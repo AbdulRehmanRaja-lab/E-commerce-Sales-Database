@@ -1,0 +1,34 @@
+-- Monthly product revenue by category
+
+SELECT 
+    DATE_FORMAT(Date, '%Y-%m') AS Month,
+    Product_Category,
+    SUM(Price * Units_Sold) AS Total_Revenue
+    FROM ecommerce_sales_prediction_dataset
+GROUP BY Month, Product_Category
+ORDER BY Product_Category DESC;  
+
+-- Top 5 Most Sold Products by Customer Segment
+
+SELECT  Customer_Segment, SUM(Units_Sold) as total_unit_sold, Product_Category
+FROM ecommerce_sales_prediction_dataset
+GROUP BY Customer_Segment,Product_Category
+order by total_unit_sold DESC
+LIMIT 5;
+
+-- Effectiveness of Marketing Spend
+SELECT 
+    SUM(Price * UnitS_Sold) AS total_profit,
+    SUM(Marketing_Spend) AS total_marketing_spend,
+    Product_Category
+    FROM ecommerce_sales_prediction_dataset
+GROUP BY Product_Category
+ORDER BY total_profit DESC ;
+
+-- Average Discount by Product Category
+SELECT 
+    Product_Category,
+    AVG(Discount) AS Average_Discount
+FROM ecommerce_sales_prediction_dataset
+GROUP BY Product_Category
+ORDER BY Average_Discount DESC;
