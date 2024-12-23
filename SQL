@@ -1,7 +1,7 @@
 -- Monthly product revenue by category
 
 SELECT 
-    DATE_FORMAT(Date, '%Y-%m') AS Month,
+    extract(MONTH FROM Date) AS Month,
     Product_Category,
     SUM(Price * Units_Sold) AS Total_Revenue
     FROM ecommerce_sales_prediction_dataset
